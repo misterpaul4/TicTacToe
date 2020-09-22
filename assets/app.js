@@ -1,3 +1,14 @@
+const Player = (name, symbol) => {
+	const getName = () => { return name };
+	const getSymbol = () => { return symbol };
+	return { getName, getSymbol };
+}
+
+const player1 = Player('john', 'X');
+const player2 = Player('peter', 'O');
+let currentPlayer = player1;
+
+
 const gameBoard = (() => {
 	const cell = document.getElementsByClassName('cell');
   let board = [null,null,null,null,null,null,null,null,null];
@@ -14,13 +25,15 @@ const gameBoard = (() => {
   	return false;
   }
 
-  return { display, notOccupied };
+  const assignSymbol = (index) => {
+  	board[index] = currentPlayer.getSymbol();
+  }
+
+  return { notOccupied, assignSymbol, display };
 })();
 
-const Player = (name, symbol) => {
-	const getName = () => { return name };
-	const getSymbol = () => { return symbol };
-	return { getName, getSymbol };
+const switchPlayer = () => {
+	(currentPlayer === player1) ? (currentPlayer = player2) : (currentPlayer = player1);
 }
 
 const displayAlert = () => {
@@ -33,7 +46,9 @@ const gamePlay = (() => {
 	for(let i=0; i<9; i++) {
 		cell[i].addEventListener('click', () => {
 			if(gameBoard.notOccupied(i)) {
-				console.log("yes")
+				gameBoard.assignSymbol(i);
+				gameBoard.display();
+				switchPlayer();
 			} else {
 				displayAlert()
 			}
@@ -41,6 +56,4 @@ const gamePlay = (() => {
 	}
 })(); 
 
-// gamePlay
 
-// gameBoard.display()
