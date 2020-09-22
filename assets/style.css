@@ -1,0 +1,14 @@
+.grid-container {
+  display: grid;
+  grid-template-rows: 70px 70px 70px;
+  grid-template-columns: 70px 70px 70px;
+  justify-content: center;
+}
+
+.grid-container > * {
+  border: 1px solid red;
+}
+
+h1 {
+  text-align: center;
+}
