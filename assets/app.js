@@ -29,7 +29,12 @@ const gameBoard = (() => {
   	board[index] = currentPlayer.getSymbol();
   }
 
-  return { notOccupied, assignSymbol, display };
+  const noWinningCombo = () => {
+
+  	return true;
+  }
+
+  return { notOccupied, assignSymbol, display, noWinningCombo };
 })();
 
 const switchPlayer = () => {
@@ -38,22 +43,39 @@ const switchPlayer = () => {
 
 const displayAlert = () => {
 	const alertBox = document.getElementById('alert');
-	alertBox.textContent = 'cell already occupied'
+	alertBox.textContent = 'cell already occupied';
+
+	const reset = () => {
+		alertBox.textContent = " ";
+	}
+
+	setTimeout(reset, 1000);
 }
+
+const declareWinner = () => {
+
+}
+
+
 
 const gamePlay = (() => {
 	const cell = document.getElementsByClassName('cell');
+	const alertBox = document.getElementById('alert');
+
+	let moves = 0
+
 	for(let i=0; i<9; i++) {
 		cell[i].addEventListener('click', () => {
 			if(gameBoard.notOccupied(i)) {
+				moves ++;
 				gameBoard.assignSymbol(i);
 				gameBoard.display();
-				switchPlayer();
+				if(gameBoard.noWinningCombo()) { 
+					switchPlayer() 
+				} else { declareWinner() }
 			} else {
-				displayAlert()
+				displayAlert();
 			}
 		})
 	}
 })(); 
-
-
