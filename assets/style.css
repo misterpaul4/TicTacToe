@@ -13,3 +13,30 @@ h1,
 p {
   text-align: center;
 }
+
+.form-container {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: calc(100vh / 2 - 450px / 2);
+  right: calc(100vw / 2 - 400px / 2);
+  width: 400px;
+  height: 450px;
+  border-radius: 30px;
+  background-color: rgba(77, 77, 77, 0.466);
+  z-index: 200;
+}
+
+.grid-centered,
+.grid-centered-item {
+  display: grid;
+  place-items: center;
+}
+
+
+.container {
+	width: 100vw;
+	height: 100vh;
+}

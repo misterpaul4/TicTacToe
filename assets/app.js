@@ -6,6 +6,8 @@ const Player = (name, symbol) => {
 
 const player1 = Player('john', 'X');
 const player2 = Player('peter', 'O');
+const alertBox = document.getElementById('alert');
+
 let currentPlayer = player1;
 
 
@@ -80,7 +82,6 @@ const switchPlayer = () => {
 }
 
 const displayAlert = () => {
-	const alertBox = document.getElementById('alert');
 	alertBox.textContent = 'cell already occupied';
 
 	const reset = () => {
@@ -91,17 +92,15 @@ const displayAlert = () => {
 }
 
 const declareWinner = () => {
-
+	alertBox.textContent = `${currentPlayer.getName()} WINS!`
 }
 
 const declareTie = () => {
-	const alertBox = document.getElementById('alert');
 	alertBox.textContent = 'GameOver, game was a tie';
 }
 
 const gamePlay = (() => {
 	const cell = document.getElementsByClassName('cell');
-	const alertBox = document.getElementById('alert');
 
 	let moves = 0
 

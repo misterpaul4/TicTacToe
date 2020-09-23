@@ -7,19 +7,35 @@
     <title>TicTacToe</title>
   </head>
   <body>
-    <h1>TicTacToe</h1>
-    <div class="grid-container">
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
+    <div class="grid-centered container">
+      <div class="grid-centered-item">
+        <h1>TicTacToe</h1>
+        <div class="grid-container">
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+          <div class="cell"></div>
+        </div>
+        <p id="alert"></p>
+      </div>
     </div>
-    <p id="alert"></p>
+
+    <form class="form-container">
+      <div class="form-input-container">
+        <label>Player One</label>
+        <input type="text" name="player_1" placeholder="name">
+      </div>
+
+      <div class="form-input-container">
+        <label>Player Two</label>
+        <input type="text" name="player_2" placeholder="name">
+      </div>
+    </form>
     <script src="assets/app.js"></script>
   </body>
 <html></html>
