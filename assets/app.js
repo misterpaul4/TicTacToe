@@ -4,12 +4,7 @@ const Player = (name, symbol) => {
 	return { getName, getSymbol };
 }
 
-const player1 = Player('john', 'X');
-const player2 = Player('peter', 'O');
 const alertBox = document.getElementById('alert');
-
-let currentPlayer = player1;
-
 
 const gameBoard = (() => {
 	const cell = document.getElementsByClassName('cell');
@@ -30,8 +25,8 @@ const gameBoard = (() => {
   	return false;
   }
 
-  const assignSymbol = (index) => {
-  	board[index] = currentPlayer.getSymbol();
+  const assignSymbol = (index, symbol) => {
+  	board[index] = symbol;
   }
 
   const noWinningCombo = () => {
@@ -77,10 +72,6 @@ const gameBoard = (() => {
   return { checkDraw, notOccupied, assignSymbol, display, noWinningCombo };
 })();
 
-const switchPlayer = () => {
-	(currentPlayer === player1) ? (currentPlayer = player2) : (currentPlayer = player1);
-}
-
 const displayAlert = () => {
 	alertBox.textContent = 'cell already occupied';
 
@@ -91,31 +82,51 @@ const displayAlert = () => {
 	setTimeout(reset, 1000);
 }
 
-const declareWinner = () => {
-	alertBox.textContent = `${currentPlayer.getName()} WINS!`
+const declareWinner = (currentPlayer) => {
+	alertBox.textContent = currentPlayer + " WINS!"
 }
 
 const declareTie = () => {
 	alertBox.textContent = 'GameOver, game was a tie';
 }
 
+
 const gamePlay = (() => {
 	const cell = document.getElementsByClassName('cell');
+	const player1_Input = document.getElementById('player_1');
+	const player2_Input = document.getElementById('player_2');
+	const formBtn = document.getElementById('form-btn');
+	const formContainer = document.getElementsByClassName('form-container')[0];
+	let currentPlayer = null;
+	let player1 = null;
+	let player2 = null;
 
-	let moves = 0
+	const switchPlayer = () => {
+		(currentPlayer === player1) ? (currentPlayer = player2) : (currentPlayer = player1);
+	}
+
+	formBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		player1 = Player(player1_Input.value, 'X');
+		player2 = Player(player2_Input.value, 'O');
+		currentPlayer = player1;
+		formContainer.style.display = 'none';
+	})
+
+	// let moves = 0
 
 	for(let i=0; i<9; i++) {
 		cell[i].addEventListener('click', () => {
 			if(gameBoard.notOccupied(i)) {
-				moves ++;
-				gameBoard.assignSymbol(i);
+				// moves ++;
+				gameBoard.assignSymbol(i, currentPlayer.getSymbol());
 				gameBoard.display();
 				if(gameBoard.noWinningCombo()) {
 					if (gameBoard.checkDraw()) {
 						declareTie();
 					}
-					switchPlayer() 
-				} else { declareWinner() }
+					switchPlayer(); 
+				} else { declareWinner(currentPlayer.getName()) }
 			} else {
 				displayAlert();
 			}
