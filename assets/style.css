@@ -29,6 +29,10 @@ p {
   z-index: 200;
 }
 
+.form-input-container {
+	text-align: center;
+}
+
 .grid-centered,
 .grid-centered-item {
   display: grid;
@@ -39,4 +43,13 @@ p {
 .container {
 	width: 100vw;
 	height: 100vh;
+}
+
+.game-container {
+	display: flex;
+	align-items: center;
+}
+
+.box {
+	margin: 0 60px;
 }

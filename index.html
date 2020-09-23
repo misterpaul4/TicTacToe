@@ -7,21 +7,31 @@
     <title>TicTacToe</title>
   </head>
   <body>
-    <div class="grid-centered container">
+    <div class="grid-centered container game">
       <div class="grid-centered-item">
-        <h1>TicTacToe</h1>
-        <div class="grid-container">
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
-          <div class="cell"></div>
+        <div class="game-container">
+          <div class="player_box"></div>
+
+          <div class="box">
+            <h1>TicTacToe</h1>
+            <div class="grid-container">
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+            </div>
+            <p id="alert"></p>
+          </div>
+
+          <div class="player_box"></div>
         </div>
-        <p id="alert"></p>
+
+        <button id="restart-btn"></button>
       </div>
     </div>
 
@@ -37,7 +47,7 @@
       </div>
 
       <div>
-        <button type="submit" id="form-btn">SUMBIT</button>
+        <button type="submit" id="form-btn">Start Game</button>
       </div>
     </form>
     <script src="assets/app.js"></script>

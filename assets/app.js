@@ -69,7 +69,13 @@ const gameBoard = (() => {
   	return true;
   }
 
-  return { checkDraw, notOccupied, assignSymbol, display, noWinningCombo };
+  const reset = () => {
+  	board = [null,null,null,null,null,null,null,null,null];
+  	alertBox.textContent = "";
+  	display();
+  }
+
+  return { reset, checkDraw, notOccupied, assignSymbol, display, noWinningCombo };
 })();
 
 const displayAlert = () => {
@@ -97,6 +103,10 @@ const gamePlay = (() => {
 	const player2_Input = document.getElementById('player_2');
 	const formBtn = document.getElementById('form-btn');
 	const formContainer = document.getElementsByClassName('form-container')[0];
+	const playerField1 = document.getElementsByClassName('player_box')[0];
+	const playerField2 = document.getElementsByClassName('player_box')[1];
+	const restartBtn = document.getElementById('restart-btn');
+
 	let currentPlayer = null;
 	let player1 = null;
 	let player2 = null;
@@ -111,6 +121,13 @@ const gamePlay = (() => {
 		player2 = Player(player2_Input.value, 'O');
 		currentPlayer = player1;
 		formContainer.style.display = 'none';
+		playerField1.textContent = `player 1: ${player1.getName()}`;
+		playerField2.textContent = `player 2: ${player2.getName()}`;
+		restartBtn.textContent = "Restart"
+	})
+
+	restartBtn.addEventListener('click', () => {
+		gameBoard.reset();
 	})
 
 	// let moves = 0
