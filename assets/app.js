@@ -13,6 +13,9 @@ const gameBoard = (() => {
 	const cell = document.getElementsByClassName('cell');
   let board = [null,null,null,null,null,null,null,null,null];
 
+  const winX = 'XXX';
+  const winO = 'OOO';
+
   const display = () => {
   	for(let i=0; i<9; i++) {
   		cell[i].textContent = board[i];
@@ -30,11 +33,46 @@ const gameBoard = (() => {
   }
 
   const noWinningCombo = () => {
+  	// horizontal
+  	if((board[0] + board[1] + board[2]) === winX  ||  (board[0] + board[1] + board[2]) === winO) { 
+  		return false;
+  	} else if ((board[3] + board[4] + board[5]) === winX  ||  (board[3] + board[4] + board[5]) === winO) {
+  			return false;
+  	} else if ((board[6] + board[7] + board[8]) === winX  ||  (board[6] + board[7] + board[8]) === winO) {
+  			return false;
+  	}
+
+  	// vertical
+  	else if ((board[0] + board[3] + board[6]) === winX  ||  (board[0] + board[3] + board[6]) === winO) {
+  		return false;
+  	} else if ((board[1] + board[4] + board[7]) === winX  ||  (board[1] + board[4] + board[7]) === winO) {
+  		return false;
+  	} else if ((board[2] + board[5] + board[8]) === winX  ||  (board[2] + board[5] + board[8]) === winO) {
+  		return false;
+  	}
+
+  	// diagonal
+  	else if ((board[0] + board[4] + board[8]) === winX  ||  (board[0] + board[4] + board[8]) === winO) {
+  		return false;
+  	} else if ((board[2] + board[4] + board[6]) === winX  ||  (board[2] + board[4] + board[6]) === winO) {
+  		return false;
+  	}
+
 
   	return true;
   }
 
-  return { notOccupied, assignSymbol, display, noWinningCombo };
+  const checkDraw = () => {
+  	for (let i=0; i<9; i+=3) {
+  		if (!board[i] || !board[i+1] || !board[i+2]) { 
+  			return false;
+  		}
+  	}
+
+  	return true;
+  }
+
+  return { checkDraw, notOccupied, assignSymbol, display, noWinningCombo };
 })();
 
 const switchPlayer = () => {
@@ -56,7 +94,10 @@ const declareWinner = () => {
 
 }
 
-
+const declareTie = () => {
+	const alertBox = document.getElementById('alert');
+	alertBox.textContent = 'GameOver, game was a tie';
+}
 
 const gamePlay = (() => {
 	const cell = document.getElementsByClassName('cell');
@@ -70,7 +111,10 @@ const gamePlay = (() => {
 				moves ++;
 				gameBoard.assignSymbol(i);
 				gameBoard.display();
-				if(gameBoard.noWinningCombo()) { 
+				if(gameBoard.noWinningCombo()) {
+					if (gameBoard.checkDraw()) {
+						declareTie();
+					}
 					switchPlayer() 
 				} else { declareWinner() }
 			} else {
