@@ -106,6 +106,9 @@ const gamePlay = (() => {
 	const playerField1 = document.getElementsByClassName('player_box')[0];
 	const playerField2 = document.getElementsByClassName('player_box')[1];
 	const restartBtn = document.getElementById('restart-btn');
+	const hideForm = () => {
+		formContainer.style.display = 'none';
+	}
 
 	let currentPlayer = null;
 	let player1 = null;
@@ -120,10 +123,9 @@ const gamePlay = (() => {
 		player1 = Player(player1_Input.value, 'X');
 		player2 = Player(player2_Input.value, 'O');
 		currentPlayer = player1;
-		formContainer.style.display = 'none';
+		setTimeout(hideForm, 300);
 		playerField1.textContent = `player 1: ${player1.getName()}`;
 		playerField2.textContent = `player 2: ${player2.getName()}`;
-		restartBtn.textContent = "Restart"
 	})
 
 	restartBtn.addEventListener('click', () => {

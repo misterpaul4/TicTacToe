@@ -1,3 +1,12 @@
+body {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently*/
+}
+
 .grid-container {
   display: grid;
   grid-template-rows: 70px 70px 70px;
@@ -14,7 +23,6 @@ p {
   text-align: center;
 }
 
-
 .form-container {
 	position: fixed;
 	display: flex;
@@ -26,7 +34,8 @@ p {
   width: 400px;
   height: 450px;
   border-radius: 30px;
-  background-color: rgba(77, 77, 77, 0.9);
+  background-color: rgb(83, 156, 116, 0.97);
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
   z-index: 200;
 }
 
@@ -35,10 +44,11 @@ p {
 }
 
 .avatar {
-	background: black;
+	background:#ff0081;
 	display: inline-block;
   margin-right: -6px;
   color: white;
+  box-shadow: 0 2px 25px rgba(255, 0, 132, 0.637);
 }
 
 .grid-centered,
