@@ -1,7 +1,8 @@
-const Player = (name, symbol) => {
+const Player = (name, symbol, color) => {
 	const getName = () => { return name };
 	const getSymbol = () => { return symbol };
-	return { getName, getSymbol };
+	const getColor = () => { return color };
+	return { getName, getSymbol, getColor };
 }
 
 const alertBox = document.getElementById('alert');
@@ -15,7 +16,7 @@ const gameBoard = (() => {
 
   const display = () => {
   	for(let i=0; i<9; i++) {
-  		cell[i].textContent = board[i];
+			cell[i].textContent = board[i];
   	}
   }
 
@@ -25,8 +26,9 @@ const gameBoard = (() => {
   	return false;
   }
 
-  const assignSymbol = (index, symbol) => {
-  	board[index] = symbol;
+  const assignSymbol = (index, symbol, color) => {
+		board[index] = symbol;
+		cell[index].style.color = color;
   }
 
   const noWinningCombo = () => {
@@ -120,8 +122,8 @@ const gamePlay = (() => {
 
 	formBtn.addEventListener('click', (e) => {
 		e.preventDefault();
-		player1 = Player(player1_Input.value, 'X');
-		player2 = Player(player2_Input.value, 'O');
+		player1 = Player(player1_Input.value, 'X', 'green');
+		player2 = Player(player2_Input.value, 'O', 'red');
 		currentPlayer = player1;
 		setTimeout(hideForm, 300);
 		playerField1.textContent = `player 1: ${player1.getName()}`;
@@ -138,7 +140,7 @@ const gamePlay = (() => {
 		cell[i].addEventListener('click', () => {
 			if(gameBoard.notOccupied(i)) {
 				// moves ++;
-				gameBoard.assignSymbol(i, currentPlayer.getSymbol());
+				gameBoard.assignSymbol(i, currentPlayer.getSymbol(), currentPlayer.getColor());
 				gameBoard.display();
 				if(gameBoard.noWinningCombo()) {
 					if (gameBoard.checkDraw()) {

@@ -1,10 +1,14 @@
+:root {
+  --border-color: 5px solid #999999;
+}
+
 body {
   -webkit-touch-callout: none;
     -webkit-user-select: none;
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently*/
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none; 
+            user-select: none;
 }
 
 .grid-container {
@@ -14,8 +18,32 @@ body {
   justify-content: center;
 }
 
-.grid-container > * {
-  border: 1px solid red;
+.game-container {
+  background-color: whitesmoke;
+}
+
+
+.cell-border {
+  border: var(--border-color);
+}
+
+.cell-border-lr {
+  border-left: var(--border-color);
+  border-right: var(--border-color);
+}
+
+.cell {
+  font-size: 3rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cell-border-tb {
+  border-top: var(--border-color);
+  border-bottom: var(--border-color);
 }
 
 h1,
