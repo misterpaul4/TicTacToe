@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ranchers&display=swap');
+
 :root {
   --border-color: 5px solid #999999;
 }
 
 body {
+  font-family: 'Ranchers', cursive;
   -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
@@ -20,7 +23,11 @@ body {
 
 .game-container {
   background-color: whitesmoke;
-  
+  font-family: 'Indie Flower', cursive;
+}
+
+h1 {
+  color: #999999;
 }
 
 
@@ -47,7 +54,6 @@ body {
   border-bottom: var(--border-color);
 }
 
-h1,
 p {
   text-align: center;
 }
@@ -78,12 +84,28 @@ p {
   text-align: center;
 }
 
+.player-name {
+  color: #6B6B6B;
+}
+
+.indicator {
+  color: #AAAAAA;
+}
+
 .avatar {
 	background:#ff0081;
 	display: inline-block;
   margin-right: -6px;
   color: white;
   box-shadow: 0 2px 25px rgba(255, 0, 132, 0.637);
+}
+
+.game-container i {
+  font-size: xx-large;
+}
+
+.board-logo {
+  margin-top: -70px;
 }
 
 .grid-centered,
@@ -105,7 +127,10 @@ p {
 }
 
 .box {
-	margin: 0 60px;
+  margin: 0 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
