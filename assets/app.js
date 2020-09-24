@@ -105,9 +105,11 @@ const gamePlay = (() => {
 	const player2_Input = document.getElementById('player_2');
 	const formBtn = document.getElementById('form-btn');
 	const formContainer = document.getElementsByClassName('form-container')[0];
-	const playerField1 = document.getElementsByClassName('player_box')[0];
-	const playerField2 = document.getElementsByClassName('player_box')[1];
+	const playerField1 = document.getElementsByClassName('player-name')[0];
+	const playerField2 = document.getElementsByClassName('player-name')[1];
 	const restartBtn = document.getElementById('restart-btn');
+	const indicator1 = document.getElementsByClassName('indicator')[0];
+	const indicator2 = document.getElementsByClassName('indicator')[1];
 	const hideForm = () => {
 		formContainer.style.display = 'none';
 	}
@@ -117,7 +119,16 @@ const gamePlay = (() => {
 	let player2 = null;
 
 	const switchPlayer = () => {
-		(currentPlayer === player1) ? (currentPlayer = player2) : (currentPlayer = player1);
+		if(currentPlayer === player1) {
+			currentPlayer = player2;
+			indicator1.style.visibility = 'hidden';
+			indicator2.style.visibility = 'visible';
+		} else {
+			currentPlayer = player1;
+			indicator1.style.visibility = 'visible';
+			indicator2.style.visibility = 'hidden';
+		}
+		// (currentPlayer === player1) ? (currentPlayer = player2) : (currentPlayer = player1);
 	}
 
 	formBtn.addEventListener('click', (e) => {
@@ -126,15 +137,14 @@ const gamePlay = (() => {
 		player2 = Player(player2_Input.value, 'O', 'red');
 		currentPlayer = player1;
 		setTimeout(hideForm, 300);
-		playerField1.textContent = `player 1: ${player1.getName()}`;
-		playerField2.textContent = `player 2: ${player2.getName()}`;
+		playerField1.textContent = `${player1.getName()} (${player1.getSymbol()})`;
+		playerField2.textContent = `${player2.getName()} (${player2.getSymbol()})`;
+		indicator2.style.visibility = 'hidden';
 	})
 
 	restartBtn.addEventListener('click', () => {
 		gameBoard.reset();
 	})
-
-	// let moves = 0
 
 	for(let i=0; i<9; i++) {
 		cell[i].addEventListener('click', () => {

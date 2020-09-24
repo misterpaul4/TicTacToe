@@ -14,7 +14,16 @@
     <div class="grid-centered container game">
       <div class="grid-centered-item">
         <div class="game-container">
-          <div class="player_box"></div>
+          <div class="player_box ml-4">
+            <div><i class="fas fa-user-ninja"></i></div>
+            <div class="player-name"></span></div>
+            <div class="indicator">
+              <div class="spinner-grow spinner-grow-sm" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+            </div>
+          </div>
+
           <div class="box">
             <h1>TicTacToe</h1>
             <div class="grid-container">
@@ -31,7 +40,15 @@
             <p id="alert"></p>
           </div>
 
-          <div class="player_box"></div>
+          <div class="player_box mr-4">
+            <div><i class="fas fa-user-ninja"></i></div>
+            <div class="player-name"></span></div>
+            <div class="indicator">
+              <div class="spinner-grow spinner-grow-sm" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+            </div>
+          </div>
         </div>
 
         <button id="restart-btn"></button>
@@ -44,12 +61,12 @@
       </div>
 
       <div class="form-input-container mb-2">
-        <div class="avatar py-2 px-3"><i class="fas fa-user-ninja"></i></div>
+        <div class="avatar py-2 px-3"><i class="fas fa-user"></i></div>
         <input type="text" name="player_1" id="player_1" placeholder="name" class="border-0 p-2" required/>
       </div>
 
       <div class="form-input-container mb-4">
-        <div class="avatar py-2 px-3"><i class="fas fa-user-ninja"></i></div>
+        <div class="avatar py-2 px-3"><i class="fas fa-user"></i></div>
         <input type="text" name="player_2" id="player_2" placeholder="name" class="border-0 p-2" required/>
       </div>
 

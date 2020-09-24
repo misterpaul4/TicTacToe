@@ -20,6 +20,7 @@ body {
 
 .game-container {
   background-color: whitesmoke;
+  
 }
 
 
@@ -71,6 +72,12 @@ p {
 	font-size: 1.2rem;
 }
 
+.player_box {
+  width: 120px;
+  font-size: larger;
+  text-align: center;
+}
+
 .avatar {
 	background:#ff0081;
 	display: inline-block;
@@ -93,7 +100,8 @@ p {
 
 .game-container {
 	display: flex;
-	align-items: center;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .box {
