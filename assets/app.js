@@ -110,6 +110,7 @@ const gamePlay = (() => {
 
   let currentPlayer;
   let player1;
+  let player2;
 
   const restartAction = () => {
     restartBtn.style.background = 'darkorange';
@@ -135,8 +136,8 @@ const gamePlay = (() => {
 
   formBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    if (player1Input.value === '') {player1Input.value = 'Player One'};
-    if (player2Input.value === '') {player2Input.value = 'Player Two'};
+    if (player1Input.value === '') { player1Input.value = 'Player One'; }
+    if (player2Input.value === '') { player2Input.value = 'Player Two'; }
     player1 = Player(player1Input.value, 'X', 'green', 0);
     player2 = Player(player2Input.value, 'O', 'red', 0);
     currentPlayer = player1;
