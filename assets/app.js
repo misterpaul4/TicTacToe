@@ -157,6 +157,8 @@ const gamePlay = (() => {
 
   quitBtn.addEventListener('click', () => {
     formContainer.style.display = 'flex';
+    gameBoard.reset();
+    gameOver = false;
   });
 
   const declareWinner = () => {
