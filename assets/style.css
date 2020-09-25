@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ranchers&display=swap');
 
 :root {
-  --border-color: 5px solid #999999;
+  --border-color: 5px solid #999;
 }
 
 body {
   font-family: 'Ranchers', cursive;
   -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none; 
-            user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .grid-container {
@@ -21,16 +21,10 @@ body {
   justify-content: center;
 }
 
-.game-container {
-  background-color: whitesmoke;
-  font-family: 'Indie Flower', cursive;
-}
-
 h1 {
-  color: #999999;
+  color: #999;
   font-size: 3rem;
 }
-
 
 .cell-border {
   border: var(--border-color);
@@ -60,9 +54,9 @@ p {
 }
 
 .form-container {
-	position: fixed;
-	display: flex;
-	flex-direction: column;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   top: calc(100vh / 2 - 450px / 2);
@@ -76,7 +70,7 @@ p {
 }
 
 .form-input-container {
-	font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .player_box {
@@ -86,16 +80,16 @@ p {
 }
 
 .player-name {
-  color: #6B6B6B;
+  color: #6b6b6b;
 }
 
 .indicator {
-  color: #AAAAAA;
+  color: #aaa;
 }
 
 .avatar {
-	background:#ff0081;
-	display: inline-block;
+  background: #ff0081;
+  display: inline-block;
   margin-right: -6px;
   color: white;
   box-shadow: 0 2px 25px rgba(255, 0, 132, 0.637);
@@ -115,16 +109,17 @@ p {
   place-items: center;
 }
 
-
 .container {
-	width: 100vw;
-	height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .game-container {
-	display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
+  background-color: whitesmoke;
+  font-family: 'Indie Flower', cursive;
 }
 
 .box {
@@ -133,7 +128,6 @@ p {
   flex-direction: column;
   align-items: center;
 }
-
 
 img {
   width: 100px;
@@ -153,6 +147,7 @@ img {
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
   box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
 }
+
 .bubbly-button:focus {
   outline: 0 !important;
 }
@@ -174,4 +169,3 @@ img {
   background-color: #e60074;
   box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
 }
-
