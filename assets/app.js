@@ -1,8 +1,8 @@
-const Player = (name, symbol, color) => {
+const Player = (name, symbol, color, score) => {
   const getName = () => name;
   const getSymbol = () => symbol;
   const getColor = () => color;
-  return { getName, getSymbol, getColor };
+  return { getName, getSymbol, getColor, score };
 };
 
 const alertBox = document.getElementById('alert');
@@ -97,7 +97,9 @@ const gamePlay = (() => {
   const restartBtn = document.getElementById('restart-btn');
   const indicator1 = document.getElementsByClassName('indicator')[0];
   const indicator2 = document.getElementsByClassName('indicator')[1];
-  const continueBtn = document.getElementById('continue-btn')
+  const score1 = document.getElementsByClassName('score')[0];
+  const score2 = document.getElementsByClassName('score')[1];
+  const quitBtn = document.getElementById('quit-btn');
   const hideForm = () => {
     formContainer.style.display = 'none';
   };
@@ -122,27 +124,39 @@ const gamePlay = (() => {
 
   formBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    player1 = Player(player1_Input.value, 'X', 'green');
-    player2 = Player(player2_Input.value, 'O', 'red');
+    player1 = Player(player1_Input.value, 'X', 'green', 0);
+    player2 = Player(player2_Input.value, 'O', 'red', 0);
     currentPlayer = player1;
     setTimeout(hideForm, 300);
     playerField1.textContent = `${player1.getName()} (${player1.getSymbol()})`;
     playerField2.textContent = `${player2.getName()} (${player2.getSymbol()})`;
     indicator2.style.visibility = 'hidden';
+    score1.textContent = 0;
+    score2.textContent = 0;
   });
 
   restartBtn.addEventListener('click', () => {
     gameBoard.reset();
+    gameOver = false;
   });
 
-  const declareWinner = (currentPlayer) => {
-    alertBox.textContent = `${currentPlayer} WINS!`;
-    continueBtn.style.display = 'inline-block';
+  quitBtn.addEventListener('click', () => {
+    formContainer.style.display = 'flex';
+  })
+
+  const declareWinner = () => {
+    alertBox.textContent = `${currentPlayer.getName()} WINS!`;
+    restartBtn.style.background = 'green';
+    restartBtn.textContent = 'CONTINUE';
+    currentPlayer.score+=1;
+    score1.textContent = player1.score;
+    score2.textContent = player2.score;
   };
   
   const declareTie = () => {
     alertBox.textContent = 'GameOver, game was a tie';
-    continueBtn.style.display = 'inline-block';
+    restartBtn.style.background = 'green';
+    restartBtn.textContent = 'CONTINUE';
   };
   
 
@@ -164,7 +178,7 @@ const gamePlay = (() => {
             }
             switchPlayer();
           } else { 
-            declareWinner(currentPlayer.getName()); 
+            declareWinner(); 
             gameOver = true;
           }
         } 

@@ -161,9 +161,8 @@ img {
   background-color: red;
 }
 
-#continue-btn {
-  background-color: green;
-  display: none;
+.score {
+  font-size: xx-large;
 }
 
 #restart-btn {
