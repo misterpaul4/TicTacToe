@@ -1,3 +1,5 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable no-empty */
 const Player = (name, symbol, color, score) => {
   const getName = () => name;
   const getSymbol = () => symbol;
@@ -14,12 +16,12 @@ const gameBoard = (() => {
   const winX = 'XXX';
   const winO = 'OOO';
 
-  const display = () => { for (let i = 0; i < 9; i++) { cell[i].textContent = board[i] } };
+  const display = () => { for (let i = 0; i < 9; i += 1) { cell[i].textContent = board[i]; } };
 
   const notOccupied = (index) => {
-  	if (board[index] === null) { return true; }
+    if (board[index] === null) { return true; }
 
-  	return false;
+    return false;
   };
 
   const assignSymbol = (index, symbol, color) => {
@@ -28,49 +30,49 @@ const gameBoard = (() => {
   };
 
   const noWinningCombo = () => {
-  	// horizontal
-  	if ((board[0] + board[1] + board[2]) === winX || (board[0] + board[1] + board[2]) === winO) {
-  		return false;
-  	} if ((board[3] + board[4] + board[5]) === winX || (board[3] + board[4] + board[5]) === winO) {
-  			return false;
-  	} if ((board[6] + board[7] + board[8]) === winX || (board[6] + board[7] + board[8]) === winO) {
-  			return false;
-  	}
+    // horizontal
+    if ((board[0] + board[1] + board[2]) === winX || (board[0] + board[1] + board[2]) === winO) {
+      return false;
+    } if ((board[3] + board[4] + board[5]) === winX || (board[3] + board[4] + board[5]) === winO) {
+      return false;
+    } if ((board[6] + board[7] + board[8]) === winX || (board[6] + board[7] + board[8]) === winO) {
+      return false;
+    }
 
-  	// vertical
-  	if ((board[0] + board[3] + board[6]) === winX || (board[0] + board[3] + board[6]) === winO) {
-  		return false;
-  	} if ((board[1] + board[4] + board[7]) === winX || (board[1] + board[4] + board[7]) === winO) {
-  		return false;
-  	} if ((board[2] + board[5] + board[8]) === winX || (board[2] + board[5] + board[8]) === winO) {
-  		return false;
-  	}
+    // vertical
+    if ((board[0] + board[3] + board[6]) === winX || (board[0] + board[3] + board[6]) === winO) {
+      return false;
+    } if ((board[1] + board[4] + board[7]) === winX || (board[1] + board[4] + board[7]) === winO) {
+      return false;
+    } if ((board[2] + board[5] + board[8]) === winX || (board[2] + board[5] + board[8]) === winO) {
+      return false;
+    }
 
-  	// diagonal
-  	if ((board[0] + board[4] + board[8]) === winX || (board[0] + board[4] + board[8]) === winO) {
-  		return false;
-  	} if ((board[2] + board[4] + board[6]) === winX || (board[2] + board[4] + board[6]) === winO) {
-  		return false;
-  	}
+    // diagonal
+    if ((board[0] + board[4] + board[8]) === winX || (board[0] + board[4] + board[8]) === winO) {
+      return false;
+    } if ((board[2] + board[4] + board[6]) === winX || (board[2] + board[4] + board[6]) === winO) {
+      return false;
+    }
 
 
-  	return true;
+    return true;
   };
 
   const checkDraw = () => {
-  	for (let i = 0; i < 9; i += 3) {
-  		if (!board[i] || !board[i + 1] || !board[i + 2]) {
-  			return false;
-  		}
-  	}
+    for (let i = 0; i < 9; i += 3) {
+      if (!board[i] || !board[i + 1] || !board[i + 2]) {
+        return false;
+      }
+    }
 
-  	return true;
+    return true;
   };
 
   const reset = () => {
-  	board = [null, null, null, null, null, null, null, null, null];
-  	alertBox.textContent = '';
-  	display();
+    board = [null, null, null, null, null, null, null, null, null];
+    alertBox.textContent = '';
+    display();
   };
 
   return { reset, checkDraw, notOccupied, assignSymbol, display, noWinningCombo };
@@ -86,10 +88,11 @@ const displayAlert = () => {
   setTimeout(reset, 1000);
 };
 
+// eslint-disable-next-line no-unused-vars
 const gamePlay = (() => {
   const cell = document.getElementsByClassName('cell');
-  const player1_Input = document.getElementById('player_1');
-  const player2_Input = document.getElementById('player_2');
+  const player1Input = document.getElementById('player_1');
+  const player2Input = document.getElementById('player_2');
   const formBtn = document.getElementById('form-btn');
   const formContainer = document.getElementsByClassName('form-container')[0];
   const playerField1 = document.getElementsByClassName('player-name')[0];
@@ -109,6 +112,16 @@ const gamePlay = (() => {
   let player1;
   let player2;
 
+  const restartAction = () => {
+    restartBtn.style.background = 'darkorange';
+    restartBtn.textContent = 'RESTART';
+  };
+
+  const continueAction = () => {
+    restartBtn.style.background = 'green';
+    restartBtn.textContent = 'CONTINUE';
+  };
+
   const switchPlayer = () => {
     if (currentPlayer === player1) {
       currentPlayer = player2;
@@ -119,13 +132,12 @@ const gamePlay = (() => {
       indicator1.style.visibility = 'visible';
       indicator2.style.visibility = 'hidden';
     }
-    // (currentPlayer === player1) ? (currentPlayer = player2) : (currentPlayer = player1);
   };
 
   formBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    player1 = Player(player1_Input.value, 'X', 'green', 0);
-    player2 = Player(player2_Input.value, 'O', 'red', 0);
+    player1 = Player(player1Input.value, 'X', 'green', 0);
+    player2 = Player(player2Input.value, 'O', 'red', 0);
     currentPlayer = player1;
     setTimeout(hideForm, 300);
     playerField1.textContent = `${player1.getName()} (${player1.getSymbol()})`;
@@ -138,57 +150,49 @@ const gamePlay = (() => {
   restartBtn.addEventListener('click', () => {
     gameBoard.reset();
     gameOver = false;
+    restartAction();
   });
 
   quitBtn.addEventListener('click', () => {
     formContainer.style.display = 'flex';
-  })
+  });
 
   const declareWinner = () => {
     alertBox.textContent = `${currentPlayer.getName()} WINS!`;
-    restartBtn.style.background = 'green';
-    restartBtn.textContent = 'CONTINUE';
-    currentPlayer.score+=1;
+    currentPlayer.score += 1;
     score1.textContent = player1.score;
     score2.textContent = player2.score;
+    gameOver = true;
+    continueAction();
   };
-  
+
   const declareTie = () => {
     alertBox.textContent = 'GameOver, game was a tie';
-    restartBtn.style.background = 'green';
-    restartBtn.textContent = 'CONTINUE';
+    gameOver = true;
+    continueAction();
   };
-  
 
   const cellClickable = () => {
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i += 1) {
       cell[i].addEventListener('click', () => {
-        if (gameOver) {
-          console.log('game over bro')
-        }
-
-        else if (gameBoard.notOccupied(i)) {
+        if (gameOver) { } else if (gameBoard.notOccupied(i)) {
           // moves ++;
           gameBoard.assignSymbol(i, currentPlayer.getSymbol(), currentPlayer.getColor());
           gameBoard.display();
           if (gameBoard.noWinningCombo()) {
             if (gameBoard.checkDraw()) {
               declareTie();
-              gameOver = true;
             }
             switchPlayer();
-          } else { 
-            declareWinner(); 
-            gameOver = true;
+          } else {
+            declareWinner();
           }
-        } 
-        
-        else {
+        } else {
           displayAlert();
         }
       });
     }
-  }
+  };
 
   cellClickable();
 })();
