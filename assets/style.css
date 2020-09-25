@@ -69,7 +69,8 @@ p {
   z-index: 200;
 }
 
-.form-input-container {
+.form-input-container,
+#alert {
   font-size: 1.2rem;
 }
 
