@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ranchers&display=swap');
+
+:root {
+  --border-color: 5px solid #999;
+}
+
+body {
+  font-family: 'Ranchers', cursive;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 70px 70px 70px;
+  grid-template-columns: 70px 70px 70px;
+  justify-content: center;
+}
+
+h1 {
+  color: #999;
+  font-size: 3rem;
+}
+
+.cell-border {
+  border: var(--border-color);
+}
+
+.cell-border-lr {
+  border-left: var(--border-color);
+  border-right: var(--border-color);
+}
+
+.cell {
+  font-size: 3rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cell-border-tb {
+  border-top: var(--border-color);
+  border-bottom: var(--border-color);
+}
+
+p {
+  text-align: center;
+}
+
+.form-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: calc(100vh / 2 - 450px / 2);
+  right: calc(100vw / 2 - 400px / 2);
+  width: 400px;
+  height: 450px;
+  border-radius: 30px;
+  background-color: rgb(83, 156, 116, 0.97);
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+  z-index: 200;
+}
+
+.form-input-container,
+#alert {
+  font-size: 1.2rem;
+}
+
+.player_box {
+  width: 120px;
+  font-size: larger;
+  text-align: center;
+}
+
+.player-name {
+  color: #6b6b6b;
+}
+
+.indicator {
+  color: #aaa;
+}
+
+.avatar {
+  background: #ff0081;
+  display: inline-block;
+  margin-right: -6px;
+  color: white;
+  box-shadow: 0 2px 25px rgba(255, 0, 132, 0.637);
+}
+
+.game-container i {
+  font-size: xx-large;
+}
+
+.board-logo {
+  margin-top: -70px;
+}
+
+.grid-centered,
+.grid-centered-item {
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: whitesmoke;
+  font-family: 'Indie Flower', cursive;
+}
+
+.box {
+  margin: 0 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 100px;
+}
+
+.bubbly-button {
+  font-size: 1em;
+  padding: 1em 2em;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #ff0081;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+}
+
+.bubbly-button:focus {
+  outline: 0 !important;
+}
+
+#quit-btn {
+  background-color: red;
+}
+
+.score {
+  font-size: xx-large;
+}
+
+#restart-btn {
+  background-color: darkorange;
+}
+
+.bubbly-button:active {
+  transform: scale(0.9);
+  background-color: #e60074;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}

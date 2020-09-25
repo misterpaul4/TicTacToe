@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--font awesome -->
+    <script src="https://kit.fontawesome.com/6e72a312b2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>TicTacToe</title>
+  </head>
+  <body>
+    <div class="grid-centered container game">
+      <div class="grid-centered-item">
+        <div class="game-container">
+          <div class="player_box ml-4">
+            <div class="text-success"><i class="fas fa-user-ninja"></i></div>
+            <div class="player-name"></div>
+            <div class="score"></div>
+            <div class="indicator">
+              <div class="spinner-grow spinner-grow-sm" role="status"></div>
+            </div>
+          </div>
+
+          <div class="box">
+            <img src="./assets/img/icon.svg" class="board-logo">
+            <h1 class="mb-3">TicTacToe</h1>
+            <div class="grid-container">
+              <div class="cell p-2"></div>
+              <div class="cell p-2 cell-border-lr"></div>
+              <div class="cell p-2"></div>
+              <div class="cell p-2 cell-border-tb"></div>
+              <div class="cell p-2 cell-border"></div>
+              <div class="cell p-2 cell-border-tb"></div>
+              <div class="cell p-2"></div>
+              <div class="cell p-2 cell-border-lr"></div>
+              <div class="cell p-2"></div>
+            </div>
+            <p id="alert" class="mt-2 font-weight-bold"></p>
+          </div>
+
+          <div class="player_box mr-4">
+            <div class="text-danger"><i class="fas fa-user-ninja"></i></div>
+            <div class="player-name"></div>
+            <div class="score"></div>
+            <div class="indicator">
+              <div class="spinner-grow spinner-grow-sm" role="status"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-btns mt-3">
+          <button id="restart-btn" class="bubbly-button mr-3">RESTART</button>
+          <button id="quit-btn" class="ml-3 bubbly-button">QUIT</button>
+
+        </div>
+      </div>
+    </div>
+
+    <form class="form-container">
+      <div class="mb-3">
+        <img src="./assets/img/icon.svg">
+      </div>
+
+      <div class="form-input-container mb-2">
+        <div class="avatar py-2 px-3"><i class="fas fa-user"></i></div>
+        <input type="text" name="player_1" id="player_1" placeholder="name" class="border-0 p-2" required/>
+      </div>
+
+      <div class="form-input-container mb-4">
+        <div class="avatar py-2 px-3"><i class="fas fa-user"></i></div>
+        <input type="text" name="player_2" id="player_2" placeholder="name" class="border-0 p-2" required/>
+      </div>
+
+      <div>
+        <button class="bubbly-button" type="submit" id="form-btn">START</button>
+      </div>
+
+    </form>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
