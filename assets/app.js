@@ -158,6 +158,7 @@ const gamePlay = (() => {
   quitBtn.addEventListener('click', () => {
     formContainer.style.display = 'flex';
     gameBoard.reset();
+    restartAction();
     gameOver = false;
   });
 
