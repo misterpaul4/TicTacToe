@@ -1,6 +1,6 @@
 /* eslint-disable no-loop-func */
 /* eslint-disable no-empty */
-const Player = (name, symbol, color, score) => {
+export const Player = (name, symbol, color, score) => {
   const getName = () => name;
   const getSymbol = () => symbol;
   const getColor = () => color;
@@ -9,7 +9,7 @@ const Player = (name, symbol, color, score) => {
 
 const alertBox = document.getElementById('alert');
 
-const gameBoard = (() => {
+export const gameBoard = (() => {
   const cell = document.getElementsByClassName('cell');
   let board = [null, null, null, null, null, null, null, null, null];
 
@@ -18,15 +18,27 @@ const gameBoard = (() => {
 
   const display = () => { for (let i = 0; i < 9; i += 1) { cell[i].textContent = board[i]; } };
 
-  const notOccupied = (index) => {
-    if (board[index] === null) { return true; }
+  const notOccupied = (index, newBoard = false) => {
+    if (newBoard) { 
+      if (newBoard[index] === null) { return true; }
+    } 
+
+    else {
+      if (board[index] === null) { return true; }
+    }
 
     return false;
   };
 
-  const assignSymbol = (index, symbol, color) => {
-    board[index] = symbol;
-    cell[index].style.color = color;
+  const assignSymbol = (index, symbol, color, newBoard = false) => {
+    if (newBoard) {
+      newBoard[index] = symbol;
+    }
+
+    else {
+      board[index] = symbol;
+      cell[index].style.color = color;
+    }
   };
 
   const noWinningCombo = () => {
@@ -89,7 +101,7 @@ const displayAlert = () => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const gamePlay = (() => {
+const gamePlay = () => {
   const cell = document.getElementsByClassName('cell');
   const player1Input = document.getElementById('player_1');
   const player2Input = document.getElementById('player_2');
@@ -200,4 +212,6 @@ const gamePlay = (() => {
   };
 
   cellClickable();
-})();
+};
+
+// gamePlay()
