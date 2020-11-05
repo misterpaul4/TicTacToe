@@ -227,4 +227,4 @@ const gamePlay = () => {
   cellClickable();
 };
 
-// gamePlay()
+gamePlay();
