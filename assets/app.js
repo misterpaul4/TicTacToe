@@ -19,13 +19,9 @@ export const gameBoard = (() => {
   const display = () => { for (let i = 0; i < 9; i += 1) { cell[i].textContent = board[i]; } };
 
   const notOccupied = (index, newBoard = false) => {
-    if (newBoard) { 
+    if (newBoard) {
       if (newBoard[index] === null) { return true; }
-    } 
-
-    else {
-      if (board[index] === null) { return true; }
-    }
+    } else if (board[index] === null) { return true; }
 
     return false;
   };
@@ -33,9 +29,7 @@ export const gameBoard = (() => {
   const assignSymbol = (index, symbol, color, newBoard = false) => {
     if (newBoard) {
       newBoard[index] = symbol;
-    }
-
-    else {
+    } else {
       board[index] = symbol;
       cell[index].style.color = color;
     }
@@ -214,4 +208,4 @@ const gamePlay = () => {
   cellClickable();
 };
 
-// gamePlay()
+gamePlay();
