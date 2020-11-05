@@ -14,10 +14,12 @@
 
 [Live Demo Link](https://misterpaul4.github.io/TicTacToe/)
 
-
 ## Getting Started
 
-clone the repository to get a local copy.
+- Make sure you have npm and node installed
+- clone the repository to get a local copy.
+- In the project's directory, install dependencies by running npm install
+- run test with npm run test
 
 ## Authors
 

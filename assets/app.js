@@ -1,6 +1,6 @@
 /* eslint-disable no-loop-func */
 /* eslint-disable no-empty */
-const Player = (name, symbol, color, score) => {
+export const Player = (name, symbol, color, score) => {
   const getName = () => name;
   const getSymbol = () => symbol;
   const getColor = () => color;
@@ -9,59 +9,77 @@ const Player = (name, symbol, color, score) => {
 
 const alertBox = document.getElementById('alert');
 
-const gameBoard = (() => {
+export const gameBoard = (() => {
   const cell = document.getElementsByClassName('cell');
-  let board = [null, null, null, null, null, null, null, null, null];
+  const board = [null, null, null, null, null, null, null, null, null];
 
   const winX = 'XXX';
   const winO = 'OOO';
 
-  const display = () => { for (let i = 0; i < 9; i += 1) { cell[i].textContent = board[i]; } };
+  const display = () => {
+    for (let i = 0; i < 9; i += 1) { cell[i].textContent = board[i]; }
+  };
 
-  const notOccupied = (index) => {
-    if (board[index] === null) { return true; }
+  const notOccupied = (index, newBoard = false) => {
+    if (newBoard) {
+      if (newBoard[index] === null) { return true; }
+    } else if (board[index] === null) { return true; }
 
     return false;
   };
 
-  const assignSymbol = (index, symbol, color) => {
-    board[index] = symbol;
-    cell[index].style.color = color;
+  const assignSymbol = (index, symbol, color, newBoard = false) => {
+    if (newBoard) {
+      newBoard[index] = symbol;
+    } else {
+      board[index] = symbol;
+      cell[index].style.color = color;
+    }
   };
 
-  const noWinningCombo = () => {
+  const noWinningCombo = (newBoard = false) => {
+    const currentBoard = newBoard || board;
     // horizontal
-    if ((board[0] + board[1] + board[2]) === winX || (board[0] + board[1] + board[2]) === winO) {
+    if ((currentBoard[0] + currentBoard[1] + currentBoard[2]) === winX
+    || (currentBoard[0] + currentBoard[1] + currentBoard[2]) === winO) {
       return false;
-    } if ((board[3] + board[4] + board[5]) === winX || (board[3] + board[4] + board[5]) === winO) {
+    } if ((currentBoard[3] + currentBoard[4] + currentBoard[5]) === winX
+    || (currentBoard[3] + currentBoard[4] + currentBoard[5]) === winO) {
       return false;
-    } if ((board[6] + board[7] + board[8]) === winX || (board[6] + board[7] + board[8]) === winO) {
+    } if ((currentBoard[6] + currentBoard[7] + currentBoard[8]) === winX
+    || (currentBoard[6] + currentBoard[7] + currentBoard[8]) === winO) {
       return false;
     }
 
     // vertical
-    if ((board[0] + board[3] + board[6]) === winX || (board[0] + board[3] + board[6]) === winO) {
+    if ((currentBoard[0] + currentBoard[3] + currentBoard[6]) === winX
+    || (currentBoard[0] + currentBoard[3] + currentBoard[6]) === winO) {
       return false;
-    } if ((board[1] + board[4] + board[7]) === winX || (board[1] + board[4] + board[7]) === winO) {
+    } if ((currentBoard[1] + currentBoard[4] + currentBoard[7]) === winX
+    || (currentBoard[1] + currentBoard[4] + currentBoard[7]) === winO) {
       return false;
-    } if ((board[2] + board[5] + board[8]) === winX || (board[2] + board[5] + board[8]) === winO) {
+    } if ((currentBoard[2] + currentBoard[5] + currentBoard[8]) === winX
+    || (currentBoard[2] + currentBoard[5] + currentBoard[8]) === winO) {
       return false;
     }
 
     // diagonal
-    if ((board[0] + board[4] + board[8]) === winX || (board[0] + board[4] + board[8]) === winO) {
+    if ((currentBoard[0] + currentBoard[4] + currentBoard[8]) === winX
+    || (currentBoard[0] + currentBoard[4] + currentBoard[8]) === winO) {
       return false;
-    } if ((board[2] + board[4] + board[6]) === winX || (board[2] + board[4] + board[6]) === winO) {
+    } if ((currentBoard[2] + currentBoard[4] + currentBoard[6]) === winX
+    || (currentBoard[2] + currentBoard[4] + currentBoard[6]) === winO) {
       return false;
     }
-
 
     return true;
   };
 
-  const checkDraw = () => {
+  const checkDraw = (newBoard = false) => {
+    const currentBoard = newBoard || board;
+
     for (let i = 0; i < 9; i += 3) {
-      if (!board[i] || !board[i + 1] || !board[i + 2]) {
+      if (!currentBoard[i] || !currentBoard[i + 1] || !currentBoard[i + 2]) {
         return false;
       }
     }
@@ -69,10 +87,17 @@ const gameBoard = (() => {
     return true;
   };
 
-  const reset = () => {
-    board = [null, null, null, null, null, null, null, null, null];
-    alertBox.textContent = '';
-    display();
+  const reset = (newBoard = false) => {
+    const currentBoard = newBoard || board;
+
+    currentBoard.forEach(((item, index) => {
+      currentBoard[index] = null;
+    }));
+
+    if (!newBoard) {
+      alertBox.textContent = '';
+      display();
+    }
   };
 
   return { reset, checkDraw, notOccupied, assignSymbol, display, noWinningCombo };
@@ -89,7 +114,7 @@ const displayAlert = () => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const gamePlay = (() => {
+const gamePlay = () => {
   const cell = document.getElementsByClassName('cell');
   const player1Input = document.getElementById('player_1');
   const player2Input = document.getElementById('player_2');
@@ -200,4 +225,6 @@ const gamePlay = (() => {
   };
 
   cellClickable();
-})();
+};
+
+// gamePlay()
